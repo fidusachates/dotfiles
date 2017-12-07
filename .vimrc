@@ -11,37 +11,27 @@
     " Plug 'severin-lemaignan/vim-minimap' " nie dziala bo brakuje python supporta 
     Plug 'ramele/agrep' " asynchronous grep
     Plug 'Valloric/YouCompleteMe'
+    " Plug 'vim-syntastic/syntastic'
 
     " Call :PlugInstall in vim to install plugins
     " :PlugUpdate :PlugDiff
     " :PlugClean after deleting plugin
     call plug#end()
 " }}}
-" PLUGIN SETTINGS {{{
-    " Airline {{{
-        set laststatus=2
-        let g:airline_theme = 'zenburn'
-        " let g:airline_left_sep = ''
-        " let g:airline_left_sep = ''
-        " let g:airline_right_sep = ''
-        " let g:airline_right_sep = ''
-    " }}}
-" YouCompleteMe {{{
-    let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-" }}}
-" }}}
 " GENERAL SETTINGS {{{
     " Colors {{{
         syntax enable
         colorscheme afterglow
         set t_Co=256
+
     " }}}
     " Misc {{{
         " enter the current millenium
         set nocompatible
 
         " Copying and pasting from global clipboard
-        set clipboard=unnamed
+        set clipboard^=unnamedplus
+        set clipboard^=unnamed
 
         set backspace=indent,eol,start
         set mouse=a " enable use of the mouse for all modes
@@ -164,6 +154,31 @@
             set relativenumber
         endif
     endfunc
+" }}}
+" PLUGIN SETTINGS {{{
+    " Airline {{{
+        set laststatus=2
+        let g:airline_theme = 'zenburn'
+        " let g:airline_left_sep = ''
+        " let g:airline_left_sep = ''
+        " let g:airline_right_sep = ''
+        " let g:airline_right_sep = ''
+    " }}}
+" YouCompleteMe {{{
+    let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+    " highlight Error ctermbg=NONE ctermfg=124 cterm=bold,underline
+    " highlight ErrorMsg ctermbg=124 ctermfg=15
+    " Text of warnings
+    highlight SyntasticWarning cterm=underline,italic
+    " Indicator of warnings
+    highlight SyntasticWarningSign ctermfg=172 cterm=bold
+    " Indicator of errors
+    highlight SyntasticErrorSign ctermfg=124 cterm=bold
+    " highlight SyntasticStyleError cterm=underline,italic
+    " highlight SyntasticStyleErrorSign ctermfg=25 cterm=bold
+    " Text of errors
+    highlight YcmErrorSection ctermbg=124 ctermfg=233 cterm=bold
+" }}}
 " }}}
 "
 
