@@ -95,7 +95,10 @@
         nnoremap gV `[v`]
     " }}}
     " Normal Mode Shortcuts {{{
+        " easier usage
         nnoremap ; :
+        " ; repeats last f, F, t, T
+        nnoremap \ ;
         " Easy window navigation
         map <C-h> <C-w>h
         map <C-j> <C-w>j
@@ -120,7 +123,9 @@
         nnoremap <leader>/ :nohlsearch<CR>
         nnoremap <leader>2 $
         nnoremap <leader>@ ^
-        let g:minimap_show='<leader>mm'
+        vnoremap <leader>2 $
+        vnoremap <leader>@ ^
+        " let g:minimap_show='<leader>mm'
     " }}}
 " }}}
 " AUTO GROUPS {{{
