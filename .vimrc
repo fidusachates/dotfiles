@@ -135,6 +135,9 @@
         autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
         " disable auto comment continues on new line
         autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+        " Change *.asm files syntax to nasm
+        autocmd BufRead,BufNewFile *.asm set filetype=nasm
+        autocmd FileType asm,nasm setlocal commentstring=;%s
     augroup END
 " }}}
 " BACKUPS {{{
