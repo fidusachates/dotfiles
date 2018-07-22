@@ -1,4 +1,6 @@
 i3
 urxvt
 hack font
+awesome font
+rofi
 betterlockscreen

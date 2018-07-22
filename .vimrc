@@ -24,6 +24,9 @@
         colorscheme afterglow
         set t_Co=256
 
+        " transparent background
+        hi Normal guibg=NONE ctermbg=NONE
+
     " }}}
     " Misc {{{
         " enter the current millenium
@@ -68,6 +71,11 @@
         " dialogue asking if you wish to save changed files.
         set confirm
         " set fillchars+=vert:|
+        " disable cursor style changing in nvim
+        if has('nvim')
+            let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+            set guicursor=
+        endif
     " }}}
     " Searching {{{
         set ignorecase	" ignore case when searching
@@ -189,5 +197,4 @@
 " }}}
 " }}}
 "
-
 " vim:foldmethod=marker:foldlevel=0
