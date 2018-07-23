@@ -4,6 +4,10 @@ declare -A ignore=(
     [.git]=1 [README.md]=1 [requirements.txt]=1
 )
 
+pacaur -S --noconfirm autojump tilda terminology neovim python python-pip dunst ruby ttf-font-awesome networkmanager rofi network-manager-applet pasystray pcmanfm chromium zathura pulseaudio betterlockscreen feh
+gem install colorls
+pip install thefuck
+
 
 function link_files {
     echo "Directory: $1"
