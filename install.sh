@@ -6,7 +6,7 @@ declare -A ignore=(
 
 pacaur -S --noconfirm autojump tilda terminology neovim python python-pip dunst ruby ttf-font-awesome networkmanager rofi network-manager-applet pasystray pcmanfm chromium zathura pulseaudio betterlockscreen feh
 gem install colorls
-pip install thefuck
+pip install --user thefuck
 
 
 function link_files {
