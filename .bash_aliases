@@ -1,7 +1,7 @@
-eval $(thefuck --alias)
-
+export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/.gem/ruby/2.5.0/bin
-TERMINAL=termite
+
+eval $(thefuck --alias)
 
 export LANG="pl_PL.UTF-8"
 
