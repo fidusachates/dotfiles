@@ -194,17 +194,20 @@ bar {
     strip_workspace_numbers yes
 
 	colors {
-	background #282a36
-	statusline #2f343f
-	separator #4b5262
+        background #282a36
+        statusline #2f343f
+        separator #4b5262
 
-		# colour of border, background, and text
-	focused_workspace	#2f343f	#bd93f9	#d8dee8
-	active_workspace	#2f343f	#2f343f	#d8dee8
-	inactive_workspace	#2f343f	#2f343f	#d8dee8
-	urgent_workspace	#2f343f	#f1fa8c	#2f343f
+        # colour of border, background, and text
+        focused_workspace	#2f343f	#bd93f9	#d8dee8
+        active_workspace	#2f343f	#2f343f	#d8dee8
+        inactive_workspace	#2f343f	#2f343f	#d8dee8
+        urgent_workspace	#2f343f	#f1fa8c	#2f343f
     }
     font pango:Font Awesome 5 Free,Font Awesome 5 Free Regular 10
+    # temporary fix for broken icons
+    # https://www.reddit.com/r/i3wm/comments/9jbmyb/strange_tray_icons_behavior/
+    i3bar_command i3bar -t
 	status_command i3status
 }
 
@@ -213,6 +216,9 @@ exec nm-applet
 
 # Sound Applet on i3bar
 exec pasystray
+
+# Bluetooth applet
+exec blueman-applet
 
 # Windows config
 default_border pixel 2

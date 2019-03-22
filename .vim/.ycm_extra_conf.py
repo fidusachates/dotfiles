@@ -11,6 +11,21 @@ flags = [
     '-Wno-long-long',
     '-Wno-variadic-macros',
     '-fexceptions',
+    # wxWidgets
+    # '-D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__',
+    # '-pthread',
+    # '-lwx_gtk3u_xrc-3.1',
+    # '-lwx_gtk3u_html-3.1',
+    # '-lwx_gtk3u_qa-3.1',
+    # '-lwx_gtk3u_adv-3.1',
+    # '-lwx_gtk3u_core-3.1',
+    # '-lwx_baseu_xml-3.1',
+    # '-lwx_baseu_net-3.1',
+    # '-lwx_baseu-3.1',
+    # '-I', 'wx-config --cppflags',
+    # '-I', '/usr/lib/wx/include/gtk3-unicode-3.1',
+    # '-I', '/usr/include/wx-3.1',
+
     # THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
     # language to use when compiling headers. So it will guess. Badly. So C++
     # headers will be compiled as C headers. You don't want that so ALWAYS specify
@@ -25,8 +40,8 @@ flags = [
     '-x', 'c++',
     # This path will only work on OS X, but extra paths that don't exist are not
     # harmful
-    '-isystem', '/usr/include/c++/7.3.1/x86_64-pld-linux/bits',
-    '-isystem', '/usr/include/c++/7.3.1/',
+    '-isystem', '/usr/include/c++/8.2.1/x86_64-pc-linux-gnu/bits',
+    '-isystem', '/usr/include/c++/8.2.1/',
     '-isystem', '/System/Library/Frameworks/Python.framework/Headers',
     '-isystem', '/usr/local/include',
     '-isystem', '/usr/local/include/eigen3',

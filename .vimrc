@@ -10,7 +10,8 @@
     " Plug 'https://github.com/w0rp/ale.git' " nie dziala
     " Plug 'severin-lemaignan/vim-minimap' " nie dziala bo brakuje python supporta 
     Plug 'ramele/agrep' " asynchronous grep
-    Plug 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --js-completer --tern-completer' }
+    Plug 'pangloss/vim-javascript'
     " Plug 'vim-syntastic/syntastic'
 
     " Call :PlugInstall in vim to install plugins
