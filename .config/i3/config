@@ -41,8 +41,8 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec dmenu_run
 
 # Rofi
-bindsym $mod+d exec --no-startup-id rofi -monitor -1 -show run -display-run " "
-bindsym $mod+Shift+d exec --no-startup-id rofi -monitor -1 -show window -display-window " "
+bindsym $mod+d exec --no-startup-id rofi -monitor -1 -show run -display-run ""
+bindsym $mod+Shift+d exec --no-startup-id rofi -monitor -1 -show window -display-window ""
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that

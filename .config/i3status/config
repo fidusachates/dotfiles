@@ -54,7 +54,7 @@ wireless wlp3s0 {
 format_up = "<span background='#8be9fb' font='Hack-Regular 10'> </span>\
 <span background='#8be9fb'></span>\
 <span background='#8be9fb' font='Hack-Regular 10'> %essid </span>"
-format_up = "<span background='#8be9fb' font='Hack-Regular 10'> </span>\
+format_down = "<span background='#8be9fb' font='Hack-Regular 10'> </span>\
 <span background='#8be9fb'></span>\
 <span background='#8be9fb' font='Hack-Regular 10'> Disconnected </span>"
 }
@@ -70,18 +70,18 @@ format_muted = "<span background='#bd93f9' font='Hack-Regular 10'> </span>\
 }
 
 battery 0 {
-	format = "<span background='#f1fa8c'>  %status %percentage </span>"
-	format_down = " No Battery"
-	status_chr = " Charging"
-	status_bat = " Battery"
-	status_full = " Charged"
+	format = "<span background='#f1fa8c' font='Hack-Regular 10'> </span><span background='#f1fa8c'>%status</span><span background='#f1fa8c' font='Hack-Regular 10'> %percentage </span>"
+	format_down = "<span font='Hack-Regular 10'> No Battery</span>"
+	status_chr = "<span font='Hack-Regular 10'> Charging</span>"
+	status_bat = "<span font='Hack-Regular 10'> Battery</span>"
+	status_full = "<span font='Hack-Regular 10'> Charged</span>"
 	path = "/sys/class/power_supply/BAT1/uevent"
 	low_threshold = 10
 }
 
 tztime local {
     format = "<span background='#0189cc' font='Hack-Regular 10'> </span>\
-<span background='#0189cc'></span>
-<span background='#0189cc'> %time </span>"
+<span background='#0189cc'></span>\
+<span background='#0189cc' font='Hack-Regular 10'> %time </span>"
 		format_time = "%a %-d %b %H:%M"
 }

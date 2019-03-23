@@ -4,9 +4,11 @@ declare -A ignore=(
     [.git]=1 [README.md]=1 [requirements.txt]=1
 )
 
-pacaur -S --noconfirm autojump tilda terminology neovim python python-pip dunst ruby ttf-font-awesome networkmanager rofi network-manager-applet pasystray pcmanfm chromium zathura pulseaudio betterlockscreen feh
+yay -S --noconfirm i3 dmenu xorg xorg-xinit autojump tilda terminology neovim python python-pip dunst ruby ttf-font-awesome networkmanager rofi network-manager-applet pasystray pcmanfm chromium zathura pulseaudio pulseaudio-alsa pulseaudio-blueetooth feh nerd-fonts-complete udevil lxappearance arc-gtk-theme arc-icon-theme ttf-dejavu ttf-inconsolata flameshot dunst wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol
+yay -S --noconfirm betterlockscreen
 gem install colorls
 pip install --user thefuck
+
 
 
 function link_files {
@@ -37,3 +39,8 @@ else
     link_files "" 0
 fi
 
+mkdir -p ~/.vim/autoload
+wget wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -P ~/.vim/autoload/
+
+sudo systemctl start NetworkManager.service
+sudo systemctl enable NetworkManager.service

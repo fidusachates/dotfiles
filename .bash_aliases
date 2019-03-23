@@ -5,7 +5,7 @@ eval $(thefuck --alias)
 
 export LANG="pl_PL.UTF-8"
 
-alias ls='colorls --sd'
+#alias ls='colorls --sd'
 alias lc='colorls --sd'
 
 alias startminix='qemu-system-x86_64 -curses -drive file=/home/jakub/vm/minix.img -localtime -net user,hostfwd=tcp::15881-:22 -net nic,model=virtio -m 1024M -enable-kvm -drive file=/home/jakub/vm/extra.img,format=raw,index=1,media=disk'
