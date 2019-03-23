@@ -243,9 +243,9 @@ bindsym Shift+Print exec --no-startup-id "flameshot gui"
 
 # Laptop Function keys (use xev to find out keynames
 # bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -q sset Master,0 1- unmute"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master 5%-"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pamixer -d 5"
 # bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -q sset Master,0 1+ unmute"
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master 5%+"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pamixer -i 5"
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 # bindsym XF86TouchpadOff

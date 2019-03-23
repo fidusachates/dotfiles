@@ -4,7 +4,7 @@ declare -A ignore=(
     [.git]=1 [README.md]=1 [requirements.txt]=1 [install.sh]=1
 )
 
-yay -S --noconfirm i3 dmenu xorg xorg-xinit autojump tilda terminology neovim python python-pip dunst ruby ttf-font-awesome networkmanager rofi network-manager-applet pasystray pcmanfm chromium zathura pulseaudio pulseaudio-alsa pulseaudio-blueetooth feh nerd-fonts-complete udevil lxappearance arc-gtk-theme arc-icon-theme ttf-dejavu ttf-inconsolata flameshot dunst wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol xclip
+yay -S --noconfirm i3 dmenu xorg xorg-xinit autojump tilda terminology neovim python python-pip dunst ruby ttf-font-awesome networkmanager rofi network-manager-applet pasystray pcmanfm chromium zathura pulseaudio pulseaudio-alsa pulseaudio-blueetooth feh nerd-fonts-complete udevil lxappearance arc-gtk-theme arc-icon-theme ttf-dejavu ttf-inconsolata flameshot dunst wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol xclip pamixer
 yay -S --noconfirm betterlockscreen
 gem install colorls
 pip install --user thefuck
