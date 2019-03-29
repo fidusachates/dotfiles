@@ -19,5 +19,6 @@ if [ -n "$DISPLAY" ]; then
   xset b off
 fi
 
+source /usr/share/nvm/init-nvm.sh
 source ~/.bash_aliases
 source /etc/profile.d/autojump.bash
