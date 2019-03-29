@@ -28,6 +28,10 @@
         " transparent background
         hi Normal guibg=NONE ctermbg=NONE
 
+        " colors of side bar with line numbers
+        hi LineNr ctermbg=NONE
+        hi LineNr ctermfg=darkgrey
+
     " }}}
     " Misc {{{
         " enter the current millenium
