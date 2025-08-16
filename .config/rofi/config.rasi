@@ -1,0 +1,26 @@
+configuration {
+	modes: "window,drun,run,ssh,calc";
+    display-run: "";
+    display-window: "";
+    display-ssh: "📡";
+    display-calc: "🧮";
+    timeout {
+        action: "kb-cancel";
+        delay:  0;
+    }
+    filebrowser {
+        directories-first: true;
+        sorting-method:    "name";
+    }
+}
+
+* {
+    background:                     #1E1D2FFF;
+    background-alt:                 #282839FF;
+    foreground:                     #D9E0EEFF;
+    selected:                       #7AA2F7FF;
+    active:                         #ABE9B3FF;
+    urgent:                         #F28FADFF;
+    alternate-normal-background:    #1E1D2FFF;
+}
+

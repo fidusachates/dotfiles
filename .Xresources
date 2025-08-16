@@ -1,2 +1,4 @@
 #include ".xres/urxvt"
-#include ".xres/rofi"
+
+*dpi: 120
+Xft.dpi: 120
