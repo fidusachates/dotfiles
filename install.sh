@@ -12,7 +12,7 @@ makepkg -si
 cd ..
 rm -rf yay
 
-yay -S --noconfirm i3 dmenu xorg xorg-xinit autojump tilda alacritty neovim python python-pip dunst ruby ttf-font-awesome networkmanager rofi rofi-calc network-manager-applet pasystray pcmanfm chromium zathura pulseaudio pulseaudio-alsa pulseaudio-blueetooth feh nerd-fonts-complete udevil lxappearance arc-gtk-theme arc-icon-theme ttf-dejavu ttf-inconsolata flameshot wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol xclip pamixer noto-fonts-emoji fzf ripgrep
+yay -S --noconfirm i3 dmenu xorg xorg-xinit autojump tilda alacritty neovim python python-pip dunst ruby ttf-font-awesome networkmanager rofi rofi-calc network-manager-applet pasystray pcmanfm chromium zathura pulseaudio pulseaudio-alsa pulseaudio-bluetooth feh udevil lxappearance arc-gtk-theme arc-icon-theme ttf-dejavu ttf-inconsolata flameshot wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol xclip pamixer noto-fonts-emoji fzf ripgrep
 yay -S --noconfirm betterlockscreen
 gem install colorls
 
