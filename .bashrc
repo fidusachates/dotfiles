@@ -19,6 +19,8 @@ if [ -n "$DISPLAY" ]; then
   xset b off
 fi
 
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
 source ~/.bash_aliases
-source /etc/profile.d/autojump.bash
+source /etc/profile.d/autojump.sh
+
+alias fl='"/home/fleka/dev/fleka-docker/venv/bin/python" "/home/fleka/dev/fleka-docker/fl.py" "$@"'

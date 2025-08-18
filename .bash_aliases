@@ -1,5 +1,5 @@
 export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/.gem/ruby/2.6.0/bin
+export PATH=$PATH:~/.local/share/gem/ruby/3.4.0/bin
 
 export LANG="pl_PL.UTF-8"
 

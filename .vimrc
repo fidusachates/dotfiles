@@ -14,6 +14,9 @@
     Plug 'pangloss/vim-javascript'
     " Plug 'vim-syntastic/syntastic'
 
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+
     " Call :PlugInstall in vim to install plugins
     " :PlugUpdate :PlugDiff
     " :PlugClean after deleting plugin
@@ -139,6 +142,9 @@
         vnoremap <leader>2 $
         vnoremap <leader>@ ^
         " let g:minimap_show='<leader>mm'
+        " fzf shortcuts
+        nnoremap <leader>f :Files<CR>
+        nnoremap <leader>g :Rg<CR>
     " }}}
 " }}}
 " AUTO GROUPS {{{
