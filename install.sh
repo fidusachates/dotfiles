@@ -6,11 +6,16 @@ declare -A ignore=(
 
 sudo pacman -S --noconfirm base-devel
 
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-cd ..
-rm -rf yay
+if which yay > /dev/null; then
+    echo "Skipping yay installation because it's already installed."
+else
+    echo "Installing yay"
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ..
+    rm -rf yay
+fi
 
 yay -S --noconfirm i3 dmenu xorg xorg-xinit autojump tilda alacritty neovim python python-pip dunst ruby ttf-font-awesome networkmanager rofi rofi-calc network-manager-applet pasystray pcmanfm chromium zathura pulseaudio pulseaudio-alsa pulseaudio-bluetooth feh udevil lxappearance arc-gtk-theme arc-icon-theme ttf-dejavu ttf-inconsolata flameshot wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol xclip pamixer noto-fonts-emoji fzf ripgrep
 yay -S --noconfirm betterlockscreen
@@ -49,3 +54,4 @@ wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.v
 
 sudo systemctl start NetworkManager.service
 sudo systemctl enable NetworkManager.service
+
