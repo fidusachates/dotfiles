@@ -45,7 +45,7 @@ else
 fi
 
 mkdir -p ~/.vim/autoload
-wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -P ~/.vim/autoload/
+wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.vim/autoload/plug.vim
 
 sudo systemctl start NetworkManager.service
 sudo systemctl enable NetworkManager.service
