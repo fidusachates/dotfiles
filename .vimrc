@@ -17,6 +17,8 @@
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
+    Plug 'preservim/nerdtree'
+
     " Call :PlugInstall in vim to install plugins
     " :PlugUpdate :PlugDiff
     " :PlugClean after deleting plugin
@@ -145,6 +147,10 @@
         " fzf shortcuts
         nnoremap <leader>f :Files<CR>
         nnoremap <leader>g :Rg<CR>
+
+        " nerd tree showrtcuts
+        " nnoremap <leader>n :NERDTreeFocus<CR>
+        nnoremap <leader>n :NERDTreeToggle<CR>
     " }}}
 " }}}
 " AUTO GROUPS {{{
@@ -205,6 +211,10 @@
     " highlight SyntasticStyleErrorSign ctermfg=25 cterm=bold
     " Text of errors
     highlight YcmErrorSection ctermbg=124 ctermfg=233 cterm=bold
+" }}}
+" NERDTree {{{
+    " Close NERDTree when new file opens
+    let NERDTreeQuitOnOpen=1
 " }}}
 " }}}
 "
