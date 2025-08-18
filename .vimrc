@@ -65,7 +65,7 @@
         set autoindent
     " }}}
     " UI Layout {{{
-        set number	" show line numbers
+        set relativenumber	" show relative line numbers
         set showcmd	" show command in bottom bar
         set cursorline	" highlight current line
         set colorcolumn=80
