@@ -54,4 +54,6 @@ wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.v
 
 sudo systemctl start NetworkManager.service
 sudo systemctl enable NetworkManager.service
+sudo systemctl start bluetooth.service
+sudo systemctl enable bluetooth.service
 
