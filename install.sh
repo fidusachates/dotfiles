@@ -32,6 +32,7 @@ function link_files {
                 link_files "$1$f/" $2
             else
                 if [[ $2 = 1 ]]; then
+                    echo "Removing: ~/$1$f"
                     rm -f ~/$1$f
                 fi
                 file=$(realpath $1$f)

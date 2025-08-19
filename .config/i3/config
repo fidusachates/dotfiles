@@ -245,16 +245,14 @@ bindsym Print exec --no-startup-id "flameshot full -c"
 bindsym Shift+Print exec --no-startup-id "flameshot gui"
 
 # Laptop Function keys (use xev to find out keynames
-# bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -q sset Master,0 1- unmute"
-bindsym XF86AudioLowerVolume exec --no-startup-id "pamixer -d 5"
-# bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -q sset Master,0 1+ unmute"
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pamixer -i 5"
-bindsym XF86AudioMute exec --no-startup-id "pamixer -t"
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/audio_lower_volume.sh
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/audio_raise_volume.sh
+bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/audio_toggle_mute.sh
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/brightness_up.sh
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/brightness_down.sh
 bindsym XF86TouchpadOff exec --no-startup-id xinput disable "04CA00A0:00 04CA:00B1 Touchpad"
 bindsym XF86TouchpadOn exec --no-startup-id xinput enable "04CA00A0:00 04CA:00B1 Touchpad"
-bindsym XF86TouchpadToggle exec --no-startup-id [ "$(xinput list-props '04CA00A0:00 04CA:00B1 Touchpad' | grep 'Device Enabled' | grep -o '[01]$')" == "1" ] && xinput --disable '04CA00A0:00 04CA:00B1 Touchpad' || xinput --enable '04CA00A0:00 04CA:00B1 Touchpad'
+bindsym XF86TouchpadToggle exec --no-startup-id ~/.config/i3/touchpad_toggle.sh
 
 # Set wallpaper
 exec_always feh --bg-scale ~/wallpaper.jpg
