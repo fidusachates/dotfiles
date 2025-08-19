@@ -211,6 +211,7 @@ bar {
     # https://www.reddit.com/r/i3wm/comments/9jbmyb/strange_tray_icons_behavior/
     i3bar_command i3bar -t
 	status_command i3status
+    tray_output primary
 }
 
 # NetworkManager applet on i3bar

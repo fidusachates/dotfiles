@@ -86,3 +86,4 @@ tztime local {
     format = "<span background='#0189cc' font='Hack-Regular 14'> lol </span><span background='#0189cc'></span><span background='#0189cc' font='Hack-Regular 14'> asd %time </span>"
     format_time = "%a %-d %b %H:%M"
 }
+
