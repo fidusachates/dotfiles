@@ -18,7 +18,7 @@ fi
 source ~/.bash_aliases
 source /etc/profile.d/autojump.sh
 
-if [ -e "~/.bash_custom" ]; then
+if [ -e ~/.bash_custom ]; then
     source ~/.bash_custom
 fi
 
