@@ -19,6 +19,8 @@
 
     Plug 'preservim/nerdtree'
 
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
     " Call :PlugInstall in vim to install plugins
     " :PlugUpdate :PlugDiff
     " :PlugClean after deleting plugin
@@ -67,6 +69,7 @@
         set autoindent
     " }}}
     " UI Layout {{{
+        set number " show current line number instead of 0 in relativenumber
         set relativenumber	" show relative line numbers
         set showcmd	" show command in bottom bar
         set cursorline	" highlight current line
@@ -149,20 +152,21 @@
         nnoremap <leader>g :Rg<CR>
 
         " nerd tree showrtcuts
-        " nnoremap <leader>n :NERDTreeFocus<CR>
-        nnoremap <leader>n :NERDTreeToggle<CR>
+        nnoremap <expr> <leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : "\:NERDTreeFind<CR>"
     " }}}
 " }}}
 " AUTO GROUPS {{{
     augroup configgroup
         autocmd!
         " Change Commentary in c++ from /* */ to //
-        autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+        autocmd FileType c,cpp,cs,java,php setlocal commentstring=//\ %s
         " disable auto comment continues on new line
         autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
         " Change *.asm files syntax to nasm
         autocmd BufRead,BufNewFile *.asm set filetype=nasm
         autocmd FileType asm,nasm setlocal commentstring=;%s
+
+        autocmd BufWritePost *.php silent !`git rev-parse --show-toplevel`/vendor/bin/pint <afile>
     augroup END
 " }}}
 " BACKUPS {{{
@@ -199,6 +203,7 @@
     " }}}
 " YouCompleteMe {{{
     let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+    let g:ycm_filetype_blacklist = { 'php': 1 }
     " highlight Error ctermbg=NONE ctermfg=124 cterm=bold,underline
     " highlight ErrorMsg ctermbg=124 ctermfg=15
     " Text of warnings
@@ -215,6 +220,31 @@
 " NERDTree {{{
     " Close NERDTree when new file opens
     let NERDTreeQuitOnOpen=1
+" }}}
+" CoC {{{
+    " Use <TAB> to select the popup menu:
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
+    inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gr <Plug>(coc-references)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+
+    nnoremap <silent> K :call ShowDocumentation()<CR>
+    function! ShowDocumentation()
+      if CocAction('hasProvider', 'hover')
+        call CocActionAsync('doHover')
+      else
+        call feedkeys('K', 'in')
+      endif
+    endfunction
+
+    let g:coc_global_extensions = [
+      \ '@yaegassy/coc-intelephense',
+      \ 'coc-json'
+    \ ]
 " }}}
 " }}}
 "
