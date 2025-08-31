@@ -10,7 +10,7 @@
     " Plug 'https://github.com/w0rp/ale.git' " nie dziala
     " Plug 'severin-lemaignan/vim-minimap' " nie dziala bo brakuje python supporta 
     Plug 'ramele/agrep' " asynchronous grep
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --js-completer --tern-completer' }
+    " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --js-completer --tern-completer' }
     Plug 'pangloss/vim-javascript'
     " Plug 'vim-syntastic/syntastic'
 
@@ -166,7 +166,11 @@
         autocmd BufRead,BufNewFile *.asm set filetype=nasm
         autocmd FileType asm,nasm setlocal commentstring=;%s
 
+        " On file save, format files with pint for PHP
         autocmd BufWritePost *.php silent !`git rev-parse --show-toplevel`/vendor/bin/pint <afile>
+
+        " On file save, format files with pint for C++
+        autocmd BufWritePost *.cpp,*.hpp silent !clang-format -i <afile>
     augroup END
 " }}}
 " BACKUPS {{{
@@ -231,6 +235,8 @@
     nmap <silent> gr <Plug>(coc-references)
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
+    " Apply the most preferred quickfix action to fix diagnostic on the current line
+    nmap <leader>qf  <Plug>(coc-fix-current)
 
     nnoremap <silent> K :call ShowDocumentation()<CR>
     function! ShowDocumentation()
@@ -243,7 +249,8 @@
 
     let g:coc_global_extensions = [
       \ '@yaegassy/coc-intelephense',
-      \ 'coc-json'
+      \ 'coc-json',
+      \ 'coc-clangd'
     \ ]
 " }}}
 " }}}
