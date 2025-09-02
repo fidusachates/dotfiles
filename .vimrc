@@ -21,6 +21,8 @@
 
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+    Plug 'SirVer/ultisnips'
+
     " Call :PlugInstall in vim to install plugins
     " :PlugUpdate :PlugDiff
     " :PlugClean after deleting plugin
@@ -252,6 +254,12 @@
       \ 'coc-json',
       \ 'coc-clangd'
     \ ]
+" }}}
+" UltiSnips {{{
+    " This code should go in your vimrc or init.vim
+    let g:UltiSnipsExpandTrigger       = '<C-S>'    " use Tab to expand snippets
+    let g:UltiSnipsJumpForwardTrigger  = '<C-S>'    " use Tab to move forward through tabstops
+    let g:UltiSnipsJumpBackwardTrigger = '<C-A>'  " use Shift-Tab to move backward through tabstops
 " }}}
 " }}}
 "
