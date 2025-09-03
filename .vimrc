@@ -257,9 +257,9 @@
 " }}}
 " UltiSnips {{{
     " This code should go in your vimrc or init.vim
-    let g:UltiSnipsExpandTrigger       = '<C-S>'    " use Tab to expand snippets
-    let g:UltiSnipsJumpForwardTrigger  = '<C-S>'    " use Tab to move forward through tabstops
-    let g:UltiSnipsJumpBackwardTrigger = '<C-A>'  " use Shift-Tab to move backward through tabstops
+    let g:UltiSnipsExpandTrigger       = '<C-s>'    " use Ctrl+S to expand snippets
+    let g:UltiSnipsJumpForwardTrigger  = '<C-s>'    " use Ctrl+S to move forward through tabstops
+    let g:UltiSnipsJumpBackwardTrigger = '<C-a>'    " use Ctrl+A to move backward through tabstops
 " }}}
 " }}}
 "

@@ -1,0 +1,42 @@
+global !p
+import subprocess
+import os
+
+def get_git_toplevel(current_file_path):
+	root = subprocess.check_output(["git", "rev-parse", "--show-toplevel"])
+	if not root:
+		return ''
+
+	root_path = root.splitlines().pop().decode("utf-8")
+	return os.path.relpath(current_file_path, root_path)[:-4]
+
+def change_path_to_php_namespace(path):
+	characters = list(path)
+	characters[0] = characters[0].upper()
+	path = "".join(characters)
+	namespace = path.replace('/', '\\')
+	last_backslash_index = namespace.rfind("\\")
+	if last_backslash_index != -1:
+		namespace = namespace[:last_backslash_index]
+	return namespace
+
+endglobal
+
+snippet class "Create new class template"
+<?php
+
+namespace `!p snip.rv = change_path_to_php_namespace(get_git_toplevel(path))`;
+
+class `!p snip.rv = snip.basename`
+{
+	$0
+}
+endsnippet
+
+snippet construct "Create construct method template"
+public function __construct($1)
+{
+	$0
+}
+endsnippet
+
