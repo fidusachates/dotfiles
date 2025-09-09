@@ -252,7 +252,8 @@
     let g:coc_global_extensions = [
       \ '@yaegassy/coc-intelephense',
       \ 'coc-json',
-      \ 'coc-clangd'
+      \ 'coc-clangd',
+      \ 'coc-pyright'
     \ ]
 " }}}
 " UltiSnips {{{
