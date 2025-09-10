@@ -192,36 +192,37 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 
 # panel
-bar {
-    strip_workspace_numbers yes
+# bar {
+#     strip_workspace_numbers yes
 
-	colors {
-        background #282a36
-        statusline #2f343f
-        separator #4b5262
+# 	colors {
+#         background #282a36
+#         statusline #2f343f
+#         separator #4b5262
 
-        # colour of border, background, and text
-        focused_workspace	#2f343f	#bd93f9	#d8dee8
-        active_workspace	#2f343f	#2f343f	#d8dee8
-        inactive_workspace	#2f343f	#2f343f	#d8dee8
-        urgent_workspace	#2f343f	#f1fa8c	#2f343f
-    }
-    font pango:Font Awesome 7 Free,Font Awesome 7 Free Regular 14
-    # temporary fix for broken icons
-    # https://www.reddit.com/r/i3wm/comments/9jbmyb/strange_tray_icons_behavior/
-    i3bar_command i3bar -t
-	status_command i3status
-    tray_output primary
-}
+#         # colour of border, background, and text
+#         focused_workspace	#2f343f	#bd93f9	#d8dee8
+#         active_workspace	#2f343f	#2f343f	#d8dee8
+#         inactive_workspace	#2f343f	#2f343f	#d8dee8
+#         urgent_workspace	#2f343f	#f1fa8c	#2f343f
+#     }
+#     font pango:Font Awesome 7 Free,Font Awesome 7 Free Regular 14
+#     # temporary fix for broken icons
+#     # https://www.reddit.com/r/i3wm/comments/9jbmyb/strange_tray_icons_behavior/
+#     i3bar_command i3bar -t
+# 	status_command i3status
+#     tray_output primary
+# }
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # NetworkManager applet on i3bar
-exec nm-applet
+exec --no-startup-id nm-applet
 
 # Sound Applet on i3bar
-exec pasystray
+exec --no-startup-id pasystray
 
 # Bluetooth applet
-exec blueman-applet
+exec --no-startup-id blueman-applet
 
 # Windows config
 default_border pixel 2
@@ -255,7 +256,7 @@ bindsym XF86TouchpadOn exec --no-startup-id xinput enable "04CA00A0:00 04CA:00B1
 bindsym XF86TouchpadToggle exec --no-startup-id ~/.config/i3/touchpad_toggle.sh
 
 # Set wallpaper
-exec_always feh --bg-scale ~/wallpaper.jpg
+exec_always --no-startup-id feh --bg-scale ~/wallpaper.jpg
 
 # Configure monitors
 # exec_always xrandr --output LVDS-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output VGA-1-2 --off --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
