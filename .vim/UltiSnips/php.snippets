@@ -20,6 +20,26 @@ def change_path_to_php_namespace(path):
 		namespace = namespace[:last_backslash_index]
 	return namespace
 
+def to_kebab_case(s):
+    # Replace any non-alphanumeric characters (except hyphens) or multiple spaces/underscores with a single space
+    s = re.sub(r"[^a-zA-Z0-9\s_-]+", "", s)
+    s = re.sub(r"[\s_]+", " ", s)
+
+    # Insert hyphens before uppercase letters in camelCase-like strings
+    s = re.sub(r"([a-z0-9])([A-Z])", r"\1-\2", s)
+
+    # Replace spaces with hyphens and convert to lowercase
+    return s.replace(" ", "-").lower()
+
+def get_parentdir(path):
+	return os.path.basename(os.path.dirname(path))
+
+def get_grandparentdir(path):
+	return os.path.basename(os.path.dirname(os.path.dirname(path)))
+
+def to_variable_case(s):
+	return s[0].lower() + s[1:]
+
 endglobal
 
 snippet class "Create new class template"
@@ -27,7 +47,7 @@ snippet class "Create new class template"
 
 namespace `!p snip.rv = change_path_to_php_namespace(get_git_toplevel(path))`;
 
-class `!p snip.rv = snip.basename`
+class `!p snip.rv = snip.basename`$1
 {
 	$0
 }
@@ -40,3 +60,163 @@ public function __construct($1)
 }
 endsnippet
 
+snippet routes "Create routes.php for Laravel"
+<?php
+
+namespace `!p snip.rv = change_path_to_php_namespace(get_git_toplevel(path))`;
+use Illuminate\Support\Facades\Route;
+
+Route::prefix('`!p snip.rv = to_kebab_case(get_parentdir(path))`s')
+	->group(function () {
+		Route::get('/$1', $2)$0;
+	});
+endsnippet
+
+snippet controller "Create Laravel controller that extends from BaseController"
+<?php
+
+namespace `!p snip.rv = change_path_to_php_namespace(get_git_toplevel(path))`;
+
+use App\Http\Controllers\BaseController;
+use App\Presto\\`!p snip.rv = get_grandparentdir(path)`\Services\\`!p snip.rv = get_grandparentdir(path)`Service;
+use App\Presto\\`!p snip.rv = get_grandparentdir(path)`\Transformers\\`!p snip.rv = get_grandparentdir(path)`Transformer;
+use App\Presto\\`!p snip.rv = get_grandparentdir(path)`\Validators\\`!p snip.rv = get_grandparentdir(path)`Validator;
+
+class `!p snip.rv = snip.basename` extends BaseController
+{
+	public function __construct(
+		`!p snip.rv = get_grandparentdir(path)`Service $service,
+		`!p snip.rv = get_grandparentdir(path)`Transformer $transformer,
+		`!p snip.rv = get_grandparentdir(path)`Validator $validator,
+	) {
+		parent::__construct($service, $transformer, $validator);
+	}$0
+}
+endsnippet
+
+snippet service "Create Laravel Service that extends from BaseService"
+<?php
+
+namespace `!p snip.rv = change_path_to_php_namespace(get_git_toplevel(path))`;
+
+use App\Contracts\QueryProcessorInterface;
+use App\Presto\\`!p snip.rv = get_grandparentdir(path)`\Models\\`!p snip.rv = get_grandparentdir(path)`;
+use App\Services\BaseService;
+
+class `!p snip.rv = snip.basename` extends BaseService
+{
+	protected string $model = `!p snip.rv = get_grandparentdir(path)`::class;
+
+	public function __construct(QueryProcessorInterface $queryProcessor)
+	{
+		parent::__construct($queryProcessor);
+	}$0
+}
+
+endsnippet
+
+snippet validator "Create Laravel Validator that extends from BaseValidator"
+<?php
+
+namespace `!p snip.rv = change_path_to_php_namespace(get_git_toplevel(path))`;
+
+use App\Validators\BaseValidator;
+use Illuminate\Http\Request;
+
+class `!p snip.rv = snip.basename` extends BaseValidator
+{
+	/**
+	 * @param Request $request
+	 * @return array
+	 * @throws ValidationException
+	 */
+	public function validateStore(Request $request): array
+	{
+		$rules = [
+			$1
+		];
+
+		return $this->validate($request, $rules);
+	}
+
+	/**
+	 * @param Request $request
+	 * @param string $id
+	 * @return array
+	 * @throws ValidationException
+	 */
+	public function validateUpdate(Request $request, string $id): array
+	{
+		$rules = [
+			$0
+		];
+
+		return $this->validate($request, $rules);
+	}
+}
+endsnippet
+
+snippet transformer "Create Laravel Transformer that extends from TransformerAbstract"
+<?php
+
+namespace `!p snip.rv = change_path_to_php_namespace(get_git_toplevel(path))`;
+
+use App\Presto\\`!p snip.rv = get_grandparentdir(path)`\Models\\`!p snip.rv = get_grandparentdir(path)`;
+use League\Fractal\TransformerAbstract;
+
+class `!p snip.rv = snip.basename` extends TransformerAbstract
+{
+	protected array $defaultIncludes = [
+	];
+
+	protected array $availableIncludes = [
+	];
+
+	/**
+     * @param `!p snip.rv = get_grandparentdir(path)` $`!p snip.rv = to_variable_case(get_grandparentdir(path))`
+     * @return array
+	 */
+	public function transform(`!p snip.rv = get_grandparentdir(path)` $`!p snip.rv = to_variable_case(get_grandparentdir(path))`): array
+	{
+		return [
+			$0
+		];
+	}
+}
+endsnippet
+
+snippet queryprocessor "Create Laravel QueryProcessor that extends from QueryProcessor and implements QueryProcessorInterface"
+<?php
+
+namespace `!p snip.rv = change_path_to_php_namespace(get_git_toplevel(path))`;
+
+use App\Contracts\QueryProcessorInterface;
+use App\Services\QueryProcessor;
+
+class `!p snip.rv = snip.basename` extends QueryProcessor implements QueryProcessorInterface
+{
+	protected array $filterableParams = [
+		$1
+	];
+
+	protected array $searchableParams = [
+		$0
+	];
+}
+endsnippet
+
+snippet model "Create Laravel Model that extends from Model"
+<?php
+
+namespace `!p snip.rv = change_path_to_php_namespace(get_git_toplevel(path))`;
+
+use Illuminate\Database\Eloquent\Model;
+
+class `!p snip.rv = snip.basename` extends Model
+{
+	$1
+	protected $fillable = [
+		$0
+	];
+}
+endsnippet
