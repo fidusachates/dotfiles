@@ -3,7 +3,7 @@
 #
 
 if [[ "$(tty)" == '/dev/tty1' ]]; then
-    exec startx
+    hyprland
 fi
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
