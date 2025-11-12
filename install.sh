@@ -1,23 +1,28 @@
 #!/bin/bash
 
 force_installation=0
+install_packages=1
 positional_args=()
 
 while [[ $# -gt 0 ]]; do
-  case $1 in
-    -f|--force)
-      force_installation=1
-      shift # past argument
-      ;;
-    -*|--*)
-      echo "Unknown option $1"
-      exit 1
-      ;;
-    *)
-      positional_args+=("$1") # save positional arg
-      shift # past argument
-      ;;
-  esac
+    case $1 in
+        -f|--force)
+            force_installation=1
+            shift # past argument
+            ;;
+        -s|--skip-packages)
+            install_packages=0
+            shift # past argument
+            ;;
+        -*|--*)
+            echo "Unknown option $1"
+            exit 1
+            ;;
+        *)
+            positional_args+=("$1") # save positional arg
+            shift # past argument
+            ;;
+    esac
 done
 
 set -- "${positional_args[@]}" # restore positional parameters
@@ -27,24 +32,26 @@ declare -A ignore=(
     [.git]=1 [README.md]=1 [requirements.txt]=1 [install.sh]=1
 )
 
-sudo pacman -S --noconfirm base-devel
+if [ "$install_packages" -eq 1 ]; then
+    sudo pacman -S --noconfirm base-devel
 
-if which yay > /dev/null; then
-    echo "Skipping yay installation because it's already installed."
-else
-    echo "Installing yay"
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-    cd ..
-    rm -rf yay
+    if which yay > /dev/null; then
+        echo "Skipping yay installation because it's already installed."
+    else
+        echo "Installing yay"
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si
+        cd ..
+        rm -rf yay
+    fi
+
+    sudo pacman -S hyprland hyprlock hypridle hyprpaper waybar eza wl-clipboard
+
+    # TODO: move non-aur packages to be installed by pacman for better clarity
+    yay -S --noconfirm i3 dmenu xorg xorg-xinit autojump tilda alacritty neovim python python-pip dunst ttf-font-awesome networkmanager rofi rofi-calc network-manager-applet pasystray pcmanfm chromium zathura pulseaudio pulseaudio-alsa pulseaudio-bluetooth feh udevil lxappearance arc-gtk-theme arc-icon-theme ttf-dejavu ttf-inconsolata flameshot wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol xclip pamixer noto-fonts-emoji fzf ripgrep ttf-hack-nerd awesome-terminal-fonts xarchiver
+    yay -S --noconfirm betterlockscreen
 fi
-
-sudo pacman -S hyprland hyprlock hypridle hyprpaper waybar eza wl-clipboard
-
-# TODO: move non-aur packages to be installed by pacman for better clarity
-yay -S --noconfirm i3 dmenu xorg xorg-xinit autojump tilda alacritty neovim python python-pip dunst ttf-font-awesome networkmanager rofi rofi-calc network-manager-applet pasystray pcmanfm chromium zathura pulseaudio pulseaudio-alsa pulseaudio-bluetooth feh udevil lxappearance arc-gtk-theme arc-icon-theme ttf-dejavu ttf-inconsolata flameshot wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol xclip pamixer noto-fonts-emoji fzf ripgrep ttf-hack-nerd awesome-terminal-fonts xarchiver
-yay -S --noconfirm betterlockscreen
 
 function link_files {
     echo "Directory: $1"
