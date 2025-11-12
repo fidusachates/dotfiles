@@ -1,5 +1,28 @@
 #!/bin/bash
 
+force_installation=0
+positional_args=()
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -f|--force)
+      force_installation=1
+      shift # past argument
+      ;;
+    -*|--*)
+      echo "Unknown option $1"
+      exit 1
+      ;;
+    *)
+      positional_args+=("$1") # save positional arg
+      shift # past argument
+      ;;
+  esac
+done
+
+set -- "${positional_args[@]}" # restore positional parameters
+
+
 declare -A ignore=(
     [.git]=1 [README.md]=1 [requirements.txt]=1 [install.sh]=1
 )
@@ -46,7 +69,7 @@ function link_files {
     done
 }
 
-if [ "$1" = "--force" ] || [ "$1" = "-f" ]; then
+if [ "$force_installation" -eq 1 ]; then
     link_files "" 1
 else
     link_files "" 0
