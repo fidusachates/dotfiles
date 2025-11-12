@@ -1,0 +1,101 @@
+#!/bin/bash
+
+WINDOW_CLASS="terminal-dropdown11"
+TERMINAL="kitty --class $WINDOW_CLASS"
+
+function unpin_window() {
+    is_pinned=$(hyprctl clients | grep -A 6 "class: $WINDOW_CLASS" | grep "pinned: 1")
+    if [[ $is_pinned ]]; then
+        hyprctl dispatch pin class:$WINDOW_CLASS
+    fi
+}
+
+function pin_window() {
+    is_not_pinned=$(hyprctl clients | grep -A 6 "class: $WINDOW_CLASS" | grep "pinned: 0")
+    if [[ $is_not_pinned ]]; then
+        hyprctl dispatch pin class:$WINDOW_CLASS
+    fi
+}
+
+function change_focus() {
+    declare -A workspaces
+    declare -A focus_ids
+
+    mapfile -t arr < <( hyprctl clients )
+
+    for line in "${arr[@]}"; do
+        # title_line=$(echo $line | grep -E "^Window [a-z0-9]+ ->.*$")
+        if [[ "$line" == "Window "* ]]; then
+            window_address=$(echo $line | sed -nr 's/^Window ([a-z0-9]+) ->.*/\1/p')
+        fi
+
+        if [[ "$line" == *"workspace: "* ]]; then
+            workspace_id=$(echo $line | sed -nr 's/workspace: (.*) \(.*/\1/p')
+        fi
+
+        if [[ "$line" == *"focusHistoryID: "* ]]; then
+            focus_history_id=$(echo $line | sed -nr 's/focusHistoryID: ([0-9]+)/\1/p')
+        fi
+
+        if [[ $window_address && $workspace_id && $focus_history_id ]]; then
+            workspaces["$window_address"]=$workspace_id
+            focus_ids["$window_address"]=$focus_history_id
+
+            unset window_address
+            unset workspace_id
+            unset focus_history_id
+        fi
+    done
+
+    active_window_address=$(hyprctl activewindow | grep "Window " | sed -nr 's/^Window ([a-z0-9]*) ->.*/\1/p')
+    active_window_workspace_id=${workspaces[$active_window_address]}
+
+    for window_address in "${!workspaces[@]}"; do
+        workspace_id=${workspaces[$window_address]}
+
+        if [[ $workspace_id -ne $active_window_workspace_id ]]; then
+            continue
+        fi
+
+        if [[ "$active_window_address" == "$window_address" ]]; then
+            continue
+        fi
+
+        focus_history_id=${focus_ids[$window_address]}
+        if [[ $next_focus_id ]]; then
+            if [[ $focus_history_id -lt $next_focus_id ]]; then
+                next_focus_id=$focus_history_id
+                next_focus_window_address=$window_address
+            fi
+        else
+            next_focus_id=$focus_history_id
+            next_focus_window_address=$window_address
+        fi
+    done
+
+    if [[ "$next_focus_window_address" ]]; then
+        hyprctl dispatch focuswindow address:0x$next_focus_window_address
+    fi
+}
+
+# TODO: pinned windows can't be fullscreened, unpin first then fullscreen
+
+clients=$(hyprctl clients | grep "class: $WINDOW_CLASS")
+if [[ $clients ]]; then
+    activewindow=$(hyprctl activewindow | grep "class: $WINDOW_CLASS")
+    if [[ $activewindow ]]; then
+        unpin_window
+        change_focus
+        # hyprctl dispatch cyclenext
+        # hyprctl dispatch focuscurrentorlast
+        # hyprctl dispatch movewindowpixel "0 -1000","class:terminal-dropdown11"
+        hyprctl dispatch movetoworkspacesilent special:dropdownterminal,class:$WINDOW_CLASS
+    else
+        hyprctl dispatch movetoworkspacesilent +0,class:$WINDOW_CLASS
+        pin_window
+        hyprctl dispatch focuswindow "class:$WINDOW_CLASS"
+        hyprctl dispatch movewindow u
+    fi
+else
+    hyprctl dispatch exec "[float; move 0 0; size 100% 30%; pin] $TERMINAL"
+fi

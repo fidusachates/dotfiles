@@ -17,9 +17,11 @@ else
     rm -rf yay
 fi
 
-yay -S --noconfirm i3 dmenu xorg xorg-xinit autojump tilda alacritty neovim python python-pip dunst ruby ttf-font-awesome networkmanager rofi rofi-calc network-manager-applet pasystray pcmanfm chromium zathura pulseaudio pulseaudio-alsa pulseaudio-bluetooth feh udevil lxappearance arc-gtk-theme arc-icon-theme ttf-dejavu ttf-inconsolata flameshot wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol xclip pamixer noto-fonts-emoji fzf ripgrep ttf-hack-nerd awesome-terminal-fonts xarchiver
+sudo pacman -S hyprland hyprlock hypridle hyprpaper waybar eza wl-clipboard
+
+# # TODO: move non-aur packages to be installed by pacman for better clarity
+yay -S --noconfirm i3 dmenu xorg xorg-xinit autojump tilda alacritty neovim python python-pip dunst ttf-font-awesome networkmanager rofi rofi-calc network-manager-applet pasystray pcmanfm chromium zathura pulseaudio pulseaudio-alsa pulseaudio-bluetooth feh udevil lxappearance arc-gtk-theme arc-icon-theme ttf-dejavu ttf-inconsolata flameshot wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol xclip pamixer noto-fonts-emoji fzf ripgrep ttf-hack-nerd awesome-terminal-fonts xarchiver
 yay -S --noconfirm betterlockscreen
-gem install colorls
 
 function link_files {
     echo "Directory: $1"
@@ -58,3 +60,4 @@ sudo systemctl enable NetworkManager.service
 sudo systemctl start bluetooth.service
 sudo systemctl enable bluetooth.service
 
+systemctl --user enable --now hyprpaper.service
