@@ -6,7 +6,9 @@
     "reload_style_on_change": true,
     "modules-left": [
         "custom/power",
+        "custom/separator",
         "hyprland/workspaces",
+        "custom/separator",
         "hyprland/window"
     ],
     "modules-center": [
@@ -16,7 +18,7 @@
         "hyprland/language",
         "cpu",
         "temperature",
-        // filesystem
+        "disk",
         "network",
         "battery",
         "pulseaudio",
@@ -35,11 +37,12 @@
         }
     },
     "hyprland/language": {
-        "format": " {short}"
+        "format": " {short}",
+        "keyboard-name": "at-translated-set-2-keyboard"
     },
     "tray": {
         "icon-size": 22,
-        "spacing": 10,
+        "spacing": 10
         // "icons": {
         //   "blueman": "bluetooth",
         //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
@@ -113,6 +116,22 @@
 			"suspend": "systemctl suspend",
 			"hibernate": "systemctl hibernate"
 		}
+    },
+    "disk": {
+        "interval": 30,
+        "format": " {specific_free:0.2f} GB Free",
+        "unit": "GB",
+        "path": "/"
+    },
+    "hyprland/window": {
+        "format": "{title}",
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "🌎 $1",
+            "(.*) .* [a-zA-Z]* profile — Mozilla Firefox": "🌎 $1"
+        }
+    },
+    "custom/separator": {
+        "format": ""
     }
 }
 

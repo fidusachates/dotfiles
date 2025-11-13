@@ -63,14 +63,19 @@ button:hover {
 #mode,
 #idle_inhibitor,
 #scratchpad,
+#disk,
 #mpd {
     padding: 0 10px;
     color: #242424;
 }
 
-#window,
 #workspaces {
-    margin: 0 4px;
+    color: #FFFFFF;
+}
+
+#window {
+    color: #FFFFFF;
+    margin: 0 0 0 8px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -189,7 +194,7 @@ label:focus {
 #language {
     background: #6FA69E;
     padding: 0 8px;
-    min-width: 16px;
+    min-width: 40px;
 }
 
 #keyboard-state > label {
@@ -206,3 +211,11 @@ label:focus {
     font-size: 16px;
 }
 
+#disk {
+    background: #FEC7CD;
+}
+
+#custom-separator {
+    margin: 0 2px;
+    color: #FFFFFF;
+}
