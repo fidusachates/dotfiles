@@ -100,20 +100,25 @@ button:hover {
     background-color: #26A65B;
 }
 
+#battery.warning:not(.charging) {
+    background-color: #F1FA8C;
+    color: #F53C3C;
+}
+
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: #F53C3C;
+        color: #242424;
     }
 }
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: #F1FA8C;
+    color: #F53C3C;
     animation-name: blink;
     animation-duration: 0.5s;
-    animation-timing-function: steps(12);
+    animation-timing-function: steps(8);
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
