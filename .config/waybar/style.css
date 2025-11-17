@@ -51,20 +51,11 @@ button:hover {
 #clock,
 #battery,
 #cpu,
-#memory,
 #disk,
 #temperature,
-#backlight,
 #network,
 #pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#disk,
-#mpd {
+#tray {
     padding: 0 10px;
     color: #242424;
 }
@@ -153,21 +144,6 @@ label:focus {
 
 #pulseaudio.muted {
     background-color: #90b1b1;
-}
-
-#wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
-}
-
-#wireplumber.muted {
-    background-color: #f53c3c;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
 }
 
 #custom-power {
