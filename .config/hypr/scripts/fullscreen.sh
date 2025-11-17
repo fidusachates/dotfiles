@@ -1,0 +1,19 @@
+#!/bin/bash
+
+WINDOW_CLASS="terminal-dropdown11"
+
+active_window_class=$(hyprctl activewindow -j | jq -r '.class')
+
+if [[ "$active_window_class" == "$WINDOW_CLASS" ]]; then
+    is_fullscreen=$(hyprctl activewindow -j | jq -r '.fullscreen')
+    if [[ $is_fullscreen -ne 0 ]]; then
+        hyprctl dispatch fullscreen
+        hyprctl dispatch pin class:$WINDOW_CLASS
+    else
+        hyprctl dispatch pin class:$WINDOW_CLASS
+        hyprctl dispatch fullscreen
+    fi
+else
+    hyprctl dispatch fullscreen
+fi
+
