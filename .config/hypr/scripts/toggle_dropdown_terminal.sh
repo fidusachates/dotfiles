@@ -78,17 +78,17 @@ function change_focus() {
     fi
 }
 
-# TODO: pinned windows can't be fullscreened, unpin first then fullscreen
-
 clients=$(hyprctl clients | grep "class: $WINDOW_CLASS")
 if [[ $clients ]]; then
     activewindow=$(hyprctl activewindow | grep "class: $WINDOW_CLASS")
     if [[ $activewindow ]]; then
+        is_fullscreen=$(hyprctl activewindow -j | jq -r '.fullscreen')
+        if [[ $is_fullscreen -ne 0 ]]; then
+            hyprctl dispatch fullscreen
+        fi
+
         unpin_window
         change_focus
-        # hyprctl dispatch cyclenext
-        # hyprctl dispatch focuscurrentorlast
-        # hyprctl dispatch movewindowpixel "0 -1000","class:terminal-dropdown11"
         hyprctl dispatch movetoworkspacesilent special:dropdownterminal,class:$WINDOW_CLASS
     else
         hyprctl dispatch movetoworkspacesilent +0,class:$WINDOW_CLASS
