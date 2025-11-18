@@ -17,6 +17,7 @@ hyprland
 hyprlock
 hyprpaper
 hyprshot
+jq
 neovim
 network-manager-applet
 networkmanager
