@@ -8,6 +8,7 @@ chromium
 clang
 dunst
 eza
+fastfetch
 feh
 firefox
 fzf
