@@ -28,8 +28,17 @@ done
 set -- "${positional_args[@]}" # restore positional parameters
 
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+PACKAGES_PATH=$SCRIPT_DIR/packages.txt
+PACKAGES_AUR_PATH=$SCRIPT_DIR/packages-aur.txt
+
 declare -A ignore=(
-    [.git]=1 [README.md]=1 [requirements.txt]=1 [install.sh]=1
+    [.git]=1
+    [README.md]=1
+    [requirements.txt]=1
+    [install.sh]=1
+    [packages.txt]=1
+    [packages-aur.txt]=1
 )
 
 if [ "$install_packages" -eq 1 ]; then
@@ -46,8 +55,8 @@ if [ "$install_packages" -eq 1 ]; then
         rm -rf yay
     fi
 
-    sudo pacman -S --noconfirm hyprland hyprlock hypridle hyprpaper hyprshot waybar eza wl-clipboard pcmanfm xarchiver dunst firefox rofi rofi-calc neovim python python-pip woff2-font-awesome networkmanager network-manager-applet pasystray chromium zathura pulseaudio pulseaudio-alsa pulseaudio-bluetooth feh nwg-look ttf-dejavu ttf-inconsolata wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol pamixer noto-fonts-emoji fzf ripgrep ttf-hack-nerd awesome-terminal-fonts
-    yay -S --noconfirm autojump arc-gtk-theme arc-icon-theme
+    sudo pacman -S --noconfirm - < $PACKAGES_PATH
+    sudo yay -S --noconfirm - < $PACKAGES_AUR_PATH
 fi
 
 function link_files {
