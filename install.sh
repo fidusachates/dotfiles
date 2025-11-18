@@ -46,11 +46,8 @@ if [ "$install_packages" -eq 1 ]; then
         rm -rf yay
     fi
 
-    sudo pacman -S hyprland hyprlock hypridle hyprpaper hyprshot waybar eza wl-clipboard pcmanfm xarchiver dunst firefox rofi rofi-calc
-
-    # TODO: move non-aur packages to be installed by pacman for better clarity
-    yay -S --noconfirm i3 dmenu xorg xorg-xinit autojump tilda alacritty neovim python python-pip ttf-font-awesome networkmanager network-manager-applet pasystray chromium zathura pulseaudio pulseaudio-alsa pulseaudio-bluetooth feh udevil lxappearance arc-gtk-theme arc-icon-theme ttf-dejavu ttf-inconsolata flameshot wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol xclip pamixer noto-fonts-emoji fzf ripgrep ttf-hack-nerd awesome-terminal-fonts
-    yay -S --noconfirm betterlockscreen
+    sudo pacman -S --noconfirm hyprland hyprlock hypridle hyprpaper hyprshot waybar eza wl-clipboard pcmanfm xarchiver dunst firefox rofi rofi-calc neovim python python-pip woff2-font-awesome networkmanager network-manager-applet pasystray chromium zathura pulseaudio pulseaudio-alsa pulseaudio-bluetooth feh nwg-look ttf-dejavu ttf-inconsolata wget bash-completion arandr bluez bluez-utils blueman clang htop pavucontrol pamixer noto-fonts-emoji fzf ripgrep ttf-hack-nerd awesome-terminal-fonts
+    yay -S --noconfirm autojump arc-gtk-theme arc-icon-theme
 fi
 
 function link_files {
