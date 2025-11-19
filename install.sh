@@ -39,6 +39,7 @@ declare -A ignore=(
     [install.sh]=1
     [packages.txt]=1
     [packages-aur.txt]=1
+    [bin]=1
 )
 
 if [ "$install_packages" -eq 1 ]; then
@@ -88,8 +89,13 @@ else
     link_files "" 0
 fi
 
-mkdir -p ~/.vim/autoload
-wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.vim/autoload/plug.vim
+if [ ! -f ~/.vim/autoload/plug.vim ]; then
+    echo "Downloading Plug"
+    mkdir -p ~/.vim/autoload
+    wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.vim/autoload/plug.vim
+    echo "Installing nvim plugins with Plug"
+    nvim +'PlugInstall --sync' +qa
+fi
 
 sudo systemctl start NetworkManager.service
 sudo systemctl enable NetworkManager.service
