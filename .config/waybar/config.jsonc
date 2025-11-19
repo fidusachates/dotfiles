@@ -135,7 +135,8 @@
         "format": "{title}",
         "rewrite": {
             "(.*) — Mozilla Firefox": "🌎 $1",
-            "(.*) .* [a-zA-Z]* profile — Mozilla Firefox": "🌎 $1"
+            "(.*) .* [a-zA-Z]* profile — Mozilla Firefox": "🌎 $1",
+            "Mozilla Firefox": "🌎"
         }
     },
     "custom/separator": {
