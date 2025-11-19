@@ -97,6 +97,10 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
     nvim +'PlugInstall --sync' +qa
 fi
 
+mkdir -p ~/.local/bin
+file=$(realpath bin/fix-wifi)
+ln -s $file ~/.local/bin/fix-wifi
+
 sudo systemctl start NetworkManager.service
 sudo systemctl enable NetworkManager.service
 sudo systemctl start bluetooth.service

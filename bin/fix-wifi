@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Tries to fix the WiFi by looking for common issues
+
+sudo -v
+
+wifi_device_name=$(cat /proc/net/wireless  | perl -ne '/(\w+):/ && print $1')
+
+issues_found=0
+
+function issue_found() {
+    issues_found=$((issues_found + 1))
+}
+
+is_wifi_driver_visible=$(nmcli d | grep wifi)
+if [[ ! $is_wifi_driver_visible ]]; then
+    echo "WiFi driver not found."
+    issue_found
+    is_probe_failed=$(sudo dmesg | grep iwlwifi | grep "probe with driver iwlwifi failed with error")
+    if [[ $is_probe_failed ]]; then
+        echo "Kernel module for WiFi failed to start."
+        echo "Restarting iwlwifi."
+        sudo modprobe -r iwlwifi
+        sudo modprobe iwlwifi
+    fi
+fi
+
+if [[ $issues_found -eq 0 ]]; then
+    echo "No issues found."
+fi
