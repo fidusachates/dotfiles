@@ -75,8 +75,12 @@ function link_files {
                     rm -f ~/$1$f
                 fi
                 file=$(realpath $1$f)
-                echo "Linking $file with ~/$1$f"
-                ln -s $file ~/$1$f
+                if [ -f ~/$1$f ]; then
+                    echo "File: ~/$1$f already exists. Skipping"
+                else
+                    echo "Linking $file with ~/$1$f"
+                    ln -s $file ~/$1$f
+                fi
             fi
             
         fi
@@ -99,7 +103,11 @@ fi
 
 mkdir -p ~/.local/bin
 file=$(realpath bin/fix-wifi)
-ln -s $file ~/.local/bin/fix-wifi
+if [ -f ~/.local/bin/fix-wifi ]; then
+    echo "File: ~/.local/bin/fix-wifi already exists. Skipping"
+else
+    ln -s $file ~/.local/bin/fix-wifi
+fi
 
 sudo systemctl start NetworkManager.service
 sudo systemctl enable NetworkManager.service
