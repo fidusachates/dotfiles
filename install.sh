@@ -102,6 +102,10 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
 fi
 
 mkdir -p ~/.local/bin
+if [ "$force_installation" -eq 1 ]; then
+    echo "Removing: ~/.local/bin/fix-wifi"
+    rm -f ~/.local/bin/fix-wifi
+fi
 file=$(realpath bin/fix-wifi)
 if [ -f ~/.local/bin/fix-wifi ]; then
     echo "File: ~/.local/bin/fix-wifi already exists. Skipping"
