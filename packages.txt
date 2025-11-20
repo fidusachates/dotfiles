@@ -39,6 +39,7 @@ rofi-calc
 ttf-dejavu
 ttf-hack-nerd
 ttf-inconsolata
+ufw
 waybar
 wget
 wl-clipboard

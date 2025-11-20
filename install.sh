@@ -120,4 +120,13 @@ sudo systemctl enable bluetooth.service
 
 systemctl --user enable --now hyprpaper.service
 
+# Configure firewall
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+sudo ufw enable
+sudo systemctl enable ufw
+
+sudo ufw reload
+
 hyprctl reload
