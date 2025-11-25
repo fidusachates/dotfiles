@@ -127,7 +127,7 @@
     },
     "disk": {
         "interval": 30,
-        "format": " {specific_free:0.2f} GB Free",
+        "format": " {specific_free:0.0f} GB Free",
         "unit": "GB",
         "path": "/"
     },
