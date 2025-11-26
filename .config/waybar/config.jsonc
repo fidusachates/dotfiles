@@ -134,9 +134,17 @@
     "hyprland/window": {
         "format": "{title}",
         "rewrite": {
-            "(.*) — Mozilla Firefox": "🌎 $1",
-            "(.*) .* [a-zA-Z]* profile — Mozilla Firefox": "🌎 $1",
-            "Mozilla Firefox": "🌎"
+            "(.*) — Mozilla Firefox": " $1",
+            "(.*) .* [a-zA-Z]* profile — Mozilla Firefox": " $1",
+            "Mozilla Firefox": ""
+        }
+    },
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": ""
         }
     },
     "custom/separator": {
