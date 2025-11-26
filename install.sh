@@ -113,6 +113,12 @@ else
     ln -s $file ~/.local/bin/fix-wifi
 fi
 
+# Adding current user to input group so that keyboard-state module in waybar works
+# https://github.com/Alexays/Waybar/wiki/Module:-Keyboard-State
+current_user=$(whoami)
+sudo usermod -a -G input $current_user
+echo "Added $current_user to input group. Restart system to apply changes"
+
 sudo systemctl start NetworkManager.service
 sudo systemctl enable NetworkManager.service
 sudo systemctl start bluetooth.service
