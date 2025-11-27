@@ -12,6 +12,7 @@ fastfetch
 feh
 firefox
 fzf
+gcolor3
 htop
 hypridle
 hyprland
