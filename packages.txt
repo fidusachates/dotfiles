@@ -36,6 +36,7 @@ python-pip
 ripgrep
 rofi
 rofi-calc
+swappy
 ttf-dejavu
 ttf-hack-nerd
 ttf-inconsolata
