@@ -21,6 +21,7 @@ hyprpaper
 hyprpicker
 hyprshot
 jq
+lazygit
 neovim
 network-manager-applet
 networkmanager
