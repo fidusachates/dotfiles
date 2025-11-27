@@ -61,37 +61,46 @@ if [ "$install_packages" -eq 1 ]; then
 fi
 
 function link_files {
-    echo "Directory: $1"
-    for f in $(ls -A $1); do
-        if [[ -n "${ignore[$f]}" ]]; then
-            echo "Ignoring: $f"
+    local current_dir=$1
+    local force_linking=$2
+    local should_use_ignore_list=${3:-1}
+    local directory_prefix=${4:-""}
+
+    local home_dir=$(echo ~)
+    local destination="$home_dir/$directory_prefix$current_dir"
+
+    local files_in_dir=$(ls -A $current_dir)
+
+    for file_in_dir in $files_in_dir; do
+        if [[ $should_use_ignore_list -eq 1 && -n "${ignore[$file_in_dir]}" ]]; then
+            echo "Ignoring: $file_in_dir"
+            continue
+        fi
+
+        if [[ -n $file_in_dir && -d $current_dir$file_in_dir ]]; then
+            directory_to_create=$destination$file_in_dir
+            mkdir -p -v $directory_to_create
+            link_files "$current_dir$file_in_dir/" $force_linking $should_use_ignore_list $directory_prefix
         else
-            if [[ -d $1$f ]]; then
-                mkdir -p ~/$1$f
-                link_files "$1$f/" $2
-            else
-                if [[ $2 = 1 ]]; then
-                    echo "Removing: ~/$1$f"
-                    rm -f ~/$1$f
-                fi
-                file=$(realpath $1$f)
-                if [ -f ~/$1$f ]; then
-                    echo "File: ~/$1$f already exists. Skipping"
-                else
-                    echo "Linking $file with ~/$1$f"
-                    ln -s $file ~/$1$f
-                fi
+            if [[ $force_linking = 1 ]]; then
+                echo "Removing: $destination$file_in_dir"
+                # rm -f $destination$file_in_dir
             fi
-            
+
+            file=$(realpath $current_dir$file_in_dir)
+
+            if [ -f $destination$file_in_dir ]; then
+                echo "File: $destination$file_in_dir already exists. Skipping"
+            else
+                echo "Linking $file with $destination$file_in_dir"
+                # ln -s $file $destination$file_in_dir
+            fi
         fi
     done
 }
 
-if [ "$force_installation" -eq 1 ]; then
-    link_files "" 1
-else
-    link_files "" 0
-fi
+link_files "" $force_installation 1
+link_files "bin/" $force_installation 0 ".local/"
 
 if [ ! -f ~/.vim/autoload/plug.vim ]; then
     echo "Downloading Plug"
@@ -99,18 +108,6 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
     wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.vim/autoload/plug.vim
     echo "Installing nvim plugins with Plug"
     nvim +'PlugInstall --sync' +qa
-fi
-
-mkdir -p ~/.local/bin
-if [ "$force_installation" -eq 1 ]; then
-    echo "Removing: ~/.local/bin/fix-wifi"
-    rm -f ~/.local/bin/fix-wifi
-fi
-file=$(realpath bin/fix-wifi)
-if [ -f ~/.local/bin/fix-wifi ]; then
-    echo "File: ~/.local/bin/fix-wifi already exists. Skipping"
-else
-    ln -s $file ~/.local/bin/fix-wifi
 fi
 
 # Adding current user to input group so that keyboard-state module in waybar works
