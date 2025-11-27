@@ -47,4 +47,5 @@ wget
 wl-clipboard
 woff2-font-awesome
 xarchiver
+xorg-xwayland
 zathura
