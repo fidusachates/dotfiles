@@ -17,6 +17,7 @@ hypridle
 hyprland
 hyprlock
 hyprpaper
+hyprpicker
 hyprshot
 jq
 neovim
