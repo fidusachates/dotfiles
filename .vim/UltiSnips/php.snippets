@@ -220,3 +220,14 @@ class `!p snip.rv = snip.basename` extends Model
 	];
 }
 endsnippet
+
+snippet enum "Create PHP Enum"
+<?php
+
+namespace `!p snip.rv = change_path_to_php_namespace(get_git_toplevel(path))`;
+
+enum `!p snip.rv = snip.basename`$1
+{
+	case $2;$0
+}
+endsnippet
