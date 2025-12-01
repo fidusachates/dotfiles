@@ -253,7 +253,8 @@
       \ '@yaegassy/coc-intelephense',
       \ 'coc-json',
       \ 'coc-clangd',
-      \ 'coc-pyright'
+      \ 'coc-pyright',
+      \ 'coc-tsserver'
     \ ]
 " }}}
 " UltiSnips {{{
