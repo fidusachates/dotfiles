@@ -2,6 +2,7 @@ arandr
 awesome-terminal-fonts
 bash-completion
 blueman
+bluetui
 bluez
 bluez-utils
 chromium
