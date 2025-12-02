@@ -231,3 +231,22 @@ enum `!p snip.rv = snip.basename`$1
 	case $2;$0
 }
 endsnippet
+
+snippet seeder "Create Laravel Database Seeder"
+<?php
+
+namespace `!p snip.rv = change_path_to_php_namespace(get_git_toplevel(path))`;
+
+use Illuminate\Database\Seeder;
+
+class `!p snip.rv = snip.basename` extends Seeder
+{
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		$0
+	}
+}
+endsnippet
