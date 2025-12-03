@@ -234,6 +234,7 @@
     inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
     nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gD :call CocAction('jumpDefinition', 'tabe')<CR>
     nmap <silent> gr <Plug>(coc-references)
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
