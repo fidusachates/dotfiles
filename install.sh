@@ -118,10 +118,30 @@ current_user=$(whoami)
 sudo usermod -a -G input $current_user
 echo "Added $current_user to input group. Restart system to apply changes"
 
-sudo systemctl start NetworkManager.service
-sudo systemctl enable NetworkManager.service
-sudo systemctl start bluetooth.service
-sudo systemctl enable bluetooth.service
+function enable_system_service {
+    local service_name=$1
+
+    local is_service_active=$(systemctl is-active --quiet $service_name)
+
+    if [[ $is_service_active -eq 0 ]]; then
+        echo "Service $service_name is already running. Skipping"
+        return
+    fi
+
+    sudo systemctl start $service_name
+
+    local is_service_enabled=$(systemctl is-enabled --quiet $service_name)
+
+    if [[ $is_service_enabled -eq 0 ]]; then
+        echo "Service $service_name is already enabled. Skipping"
+        return
+    fi
+
+    sudo systemctl enable $service_name
+}
+
+enable_system_service NetworkManager.service
+enable_system_service bluetooth.service
 
 systemctl --user enable --now hyprpaper.service
 
