@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo -v
+
 force_installation=0
 install_packages=1
 positional_args=()
