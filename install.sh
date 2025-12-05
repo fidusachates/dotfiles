@@ -84,7 +84,7 @@ function link_files {
         else
             if [[ $force_linking = 1 ]]; then
                 echo "Removing: $destination$file_in_dir"
-                # rm -f $destination$file_in_dir
+                rm -f $destination$file_in_dir
             fi
 
             file=$(realpath $current_dir$file_in_dir)
@@ -93,7 +93,7 @@ function link_files {
                 echo "File: $destination$file_in_dir already exists. Skipping"
             else
                 echo "Linking $file with $destination$file_in_dir"
-                # ln -s $file $destination$file_in_dir
+                ln -s $file $destination$file_in_dir
             fi
         fi
     done

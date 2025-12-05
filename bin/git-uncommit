@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# git-uncommit
+# wrapper around git reset --soft HEAD^ because I keep forgetting the command
+# and uncommit describes perfectly what I want to do:
+# which means, the script will undo the act of committing, leaving everything
+# else intact
+
+git reset --soft HEAD^
