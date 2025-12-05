@@ -143,8 +143,6 @@ function enable_system_service {
 enable_system_service NetworkManager.service
 enable_system_service bluetooth.service
 
-systemctl --user enable --now hyprpaper.service
-
 # Configure firewall
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
