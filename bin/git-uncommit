@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#
 # git-uncommit
 # wrapper around git reset --soft HEAD^ because I keep forgetting the command
 # and uncommit describes perfectly what I want to do:
