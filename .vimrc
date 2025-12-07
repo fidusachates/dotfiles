@@ -255,7 +255,8 @@
       \ 'coc-json',
       \ 'coc-clangd',
       \ 'coc-pyright',
-      \ 'coc-tsserver'
+      \ 'coc-tsserver',
+      \ 'coc-sh'
     \ ]
 " }}}
 " UltiSnips {{{
