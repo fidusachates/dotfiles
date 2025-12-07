@@ -154,12 +154,19 @@ enable_system_service NetworkManager.service
 enable_system_service bluetooth.service
 
 # Configure firewall
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
+ufw_status=$(sudo ufw status)
+if echo "$ufw_status" | grep -q "Status: active"; then
+    echo "Firewall (ufw) is already active. Skipping"
+else
+    sudo ufw default deny incoming
+    sudo ufw default allow outgoing
 
-sudo ufw enable
-sudo systemctl enable ufw
+    sudo ufw enable
+    sudo systemctl enable ufw
 
-sudo ufw reload
+    sudo ufw reload
+
+    echo "Firewall (ufw) is configured and enabled"
+fi
 
 hyprctl reload
