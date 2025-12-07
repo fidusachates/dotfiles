@@ -112,11 +112,21 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
     nvim +'PlugInstall --sync' +qa
 fi
 
-# Adding current user to input group so that keyboard-state module in waybar works
-# https://github.com/Alexays/Waybar/wiki/Module:-Keyboard-State
-current_user=$(whoami)
-sudo usermod -a -G input $current_user
-echo "Added $current_user to input group. Restart system to apply changes"
+function add_current_user_to_group {
+    group_name=$1
+    current_user=$(whoami)
+
+    if groups | grep -q "\\b$group_name\\b"; then
+        echo "User '$current_user' is already a member of group '$group_name'. Skipping"
+    else
+        # Adding current user to input group so that keyboard-state module in waybar works
+        # https://github.com/Alexays/Waybar/wiki/Module:-Keyboard-State
+        sudo usermod -a -G $group_name $current_user
+        echo "Added '$current_user' to '$group_name' group. Restart system to apply changes"
+    fi
+}
+
+add_current_user_to_group "input"
 
 function enable_system_service {
     local service_name=$1
