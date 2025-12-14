@@ -33,6 +33,7 @@ pamixer
 pasystray
 pavucontrol
 pcmanfm
+pipewire
 pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
@@ -48,8 +49,10 @@ ttf-inconsolata
 ufw
 waybar
 wget
+wireplumber
 wl-clipboard
 woff2-font-awesome
 xarchiver
+xdg-desktop-portal-hyprland
 xorg-xwayland
 zathura
