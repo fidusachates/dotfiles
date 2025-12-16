@@ -4,6 +4,7 @@ configuration {
     display-window: "";
     display-ssh: "📡";
     display-calc: "🧮";
+    display-drun: "";
     timeout {
         action: "kb-cancel";
         delay:  0;
