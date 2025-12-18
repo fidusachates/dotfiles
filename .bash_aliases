@@ -11,3 +11,4 @@ alias vim='nvim'
 
 alias mountwindows='sudo mount /dev/sda2 /mnt/windows'
 
+alias s="kitten ssh"
