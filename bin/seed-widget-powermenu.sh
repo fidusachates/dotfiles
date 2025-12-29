@@ -1,6 +1,7 @@
 #!/bin/bash
 
-dir="$HOME/.config/rofi"
+rofi_dir="$HOME/.config/rofi"
+bin_dir="$HOME/.local/bin"
 uptime="`uptime -p | sed -e 's/up //g'`"
 
 options="Logout\nSuspend\nReboot\nShutdown"
@@ -27,7 +28,7 @@ run_rofi() {
 }
 
 confirm_exit() {
-    local result=$($dir/scripts/confirmation.sh)
+    local result=$($bin_dir/seed-widget-confirmation.sh)
     echo $result
 }
 
