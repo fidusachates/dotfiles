@@ -1,4 +1,6 @@
-# dotfiles
+# SEED
+
+System Environment & Dotfiles
 
 1. To install enter the root directory and run:
 ```
