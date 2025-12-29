@@ -1,0 +1,8 @@
+prompt {
+    enabled:            true;
+    padding:            var(general-padding);
+    border-radius:      var(general-radius);
+    background-color:   @active;
+    text-color:         @background;
+}
+

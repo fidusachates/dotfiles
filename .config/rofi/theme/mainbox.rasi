@@ -1,0 +1,10 @@
+mainbox {
+    enabled:            true;
+    spacing:            var(box-spacing);
+    margin:             0px;
+    padding:            var(box-margin);
+    border:             0px solid;
+    border-radius:      4px;
+    border-color:       @selected;
+    background-color:   @background;
+}

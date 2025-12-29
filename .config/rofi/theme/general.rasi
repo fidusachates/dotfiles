@@ -1,0 +1,12 @@
+* {
+    box-spacing:        30px;
+    box-margin:         30px 30px;
+    list-spacing:       30px;
+    inputbar-spacing:   30px;
+    general-padding:    20px;
+    element-padding:    20px 10px;
+    element-radius:     4px;
+    element-size:       80px;
+    general-radius:     4px;
+    element-font:       "FontAwesome 16";
+}

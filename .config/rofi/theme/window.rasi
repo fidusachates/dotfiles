@@ -1,0 +1,20 @@
+window {
+    transparency:       "real";
+    location:           center;
+    anchor:             center;
+    fullscreen:         false;
+    x-offset:           0px;
+    y-offset:           0px;
+
+    enabled:            true;
+    margin:             0px;
+    padding:            0px;
+    border:             0px;
+    border-radius:      var(general-radius);
+    border-color:       @selected;
+    cursor:             "default";
+    background-color:   @background;
+    background-image:   @border-image-color;
+    padding:            2px;
+}
+

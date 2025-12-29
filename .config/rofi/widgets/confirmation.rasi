@@ -1,0 +1,37 @@
+configuration {
+    show-icons:                 false;
+}
+
+@import "~/.config/rofi/theme/colors.rasi"
+@import "~/.config/rofi/theme/general.rasi"
+@import "~/.config/rofi/theme/icon-elements.rasi"
+@import "~/.config/rofi/theme/dummy.rasi"
+@import "~/.config/rofi/theme/horizontal-listview.rasi"
+@import "~/.config/rofi/theme/inputbar.rasi"
+@import "~/.config/rofi/theme/prompt.rasi"
+@import "~/.config/rofi/theme/mainbox.rasi"
+@import "~/.config/rofi/theme/window.rasi"
+
+* {
+    element-padding:             20px 10px;
+    element-font:                "FontAwesome 16";
+    inputbar-spacing:            0px;
+}
+
+window {
+    width:                       260px;
+    height:                      220px;
+}
+
+mainbox {
+    children:                    [ "inputbar", "listview" ];
+}
+
+inputbar {
+    children:                    [ "dummy", "prompt", "dummy"];
+}
+
+listview {
+    columns:                     1;
+    lines:                       2;
+}

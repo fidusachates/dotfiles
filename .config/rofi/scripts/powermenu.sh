@@ -11,15 +11,11 @@ opt_suspend="";
 opt_reboot="";
 opt_lock="";
 
-opt_yes="";
-opt_no="";
-
-# Rofi CMD
 rofi_cmd() {
 	rofi -dmenu \
 		-p "Uptime: $uptime" \
 		-mesg "Uptime: $uptime" \
-        -theme ${dir}/scripts/powermenu.rasi
+        -theme ${dir}/widgets/powermenu.rasi
 }
 
 echo_options() {
@@ -31,24 +27,13 @@ run_rofi() {
 }
 
 confirm_exit() {
-	echo -e "$opt_yes\n$opt_no" | confirm_cmd
+    local result=$($dir/scripts/confirmation.sh)
+    echo $result
 }
 
-confirm_cmd() {
-	rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
-		-theme-str 'mainbox {children: [ "message", "listview" ];}' \
-		-theme-str 'listview {columns: 2; lines: 1;}' \
-		-theme-str 'element-text {horizontal-align: 0.5;}' \
-		-theme-str 'textbox {horizontal-align: 0.5;}' \
-		-dmenu \
-		-p 'Confirmation' \
-		-mesg 'Are you Sure?'
-}
-
-# Execute Command
 run_cmd() {
 	selected="$(confirm_exit)"
-    if [[ "$selected" == "$opt_yes" ]]; then
+    if [[ "$selected" == "true" ]]; then
 		if [[ $1 == '--shutdown' ]]; then
 			systemctl poweroff
 		elif [[ $1 == '--reboot' ]]; then
@@ -64,7 +49,6 @@ run_cmd() {
 	fi
 }
 
-# Actions
 choice=$(run_rofi)
 case ${choice} in
     $opt_shutdown)
