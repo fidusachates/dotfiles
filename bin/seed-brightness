@@ -1,0 +1,25 @@
+#!/bin/bash
+
+send_notification() {
+    dunstify "Brightness [`xbacklight -get`%]" -u low -t 1000 -h string:x-canonical-private-synchronous:brightness -h int:value:"`xbacklight -get`"
+}
+
+brightness_up() {
+    xbacklight -inc 10
+    send_notification
+}
+
+brightness_down() {
+    xbacklight -dec 10
+    send_notification
+}
+
+case $1 in
+    "up")
+		brightness_up
+        ;;
+    "down")
+		brightness_down
+        ;;
+esac
+

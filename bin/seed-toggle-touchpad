@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HYPRLAND_DEVICE="04ca00a0:00-04ca:00b1-mouse"
+HYPRLAND_DEVICE="04ca00a0:00-04ca:00b1-touchpad"
 
 if [ -z "$XDG_RUNTIME_DIR" ]; then
 	export XDG_RUNTIME_DIR="/run/user/$(id -u)"

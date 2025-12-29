@@ -28,7 +28,7 @@ run_rofi() {
 }
 
 confirm_exit() {
-    local result=$($bin_dir/seed-widget-confirmation.sh)
+    local result=$($bin_dir/seed-widget-confirmation)
     echo $result
 }
 
