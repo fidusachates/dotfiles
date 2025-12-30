@@ -97,5 +97,5 @@ if [[ $clients ]]; then
         hyprctl dispatch movewindow u
     fi
 else
-    hyprctl dispatch exec "[float; move 0 0; size 100% 30%; pin] $TERMINAL"
+    hyprctl dispatch exec "[float; move 0 0; size monitor_w monitor_h*0.3; pin] $TERMINAL"
 fi
