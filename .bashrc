@@ -20,3 +20,4 @@ if [ -e ~/.bash_custom ]; then
     source ~/.bash_custom
 fi
 
+eval "$(zoxide init bash)"

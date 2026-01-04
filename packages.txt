@@ -56,3 +56,4 @@ xarchiver
 xdg-desktop-portal-hyprland
 xorg-xwayland
 zathura
+zoxide
