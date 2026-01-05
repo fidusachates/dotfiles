@@ -12,3 +12,11 @@ alias vim='nvim'
 alias mountwindows='sudo mount /dev/sda2 /mnt/windows'
 
 alias s="kitten ssh"
+
+get_seed_root_dir() {
+    local SEED_BASHRC_PATH=$(realpath "/home/$USER/.bashrc")
+    local SEED_ROOT_DIR=$(dirname "$SEED_BASHRC_PATH")
+    echo $SEED_ROOT_DIR
+}
+
+export SEED_ROOT_DIR=$(get_seed_root_dir)

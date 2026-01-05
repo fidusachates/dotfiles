@@ -1,0 +1,57 @@
+#!/bin/bash
+
+include_all_packages=0
+include_dependencies=0
+positional_args=()
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -a|--all-packages)
+            # include all packages. By default only explicitly installed are shown
+            include_all_packages=1
+            shift
+            ;;
+        -d|--include-dependencies)
+            include_dependencies=1
+            shift # past argument
+            ;;
+        -*|--*)
+            echo "Unknown option $1"
+            exit 1
+            ;;
+        *)
+            positional_args+=("$1") # save positional arg
+            shift # past argument
+            ;;
+    esac
+done
+
+set -- "${positional_args[@]}" # restore positional parameters
+
+if [ "$include_all_packages" -eq 1 ]; then
+    ALL_INSTALLED_PACKAGES=$(pacman -Qq)
+else
+    ALL_INSTALLED_PACKAGES=$(pacman -Qqe)
+fi
+SEED_INITIAL_PACKAGES=$(cat $SEED_ROOT_DIR/packages.txt)
+
+declare -A seed_packages
+
+for package in $SEED_INITIAL_PACKAGES; do
+    seed_packages["$package"]=1
+    if [ "$include_dependencies" -eq 1 ]; then
+        dependencies=$(pactree -u $package)
+        for dependency in $dependencies; do
+            dependency_without_version="${dependency%%=*}"
+            dependency_without_version="${dependency_without_version%%>*}"
+            seed_packages["$dependency_without_version"]=1
+        done
+    fi
+done
+
+for package in $ALL_INSTALLED_PACKAGES; do
+    if [[ ! -v seed_packages[$package] ]]; then
+        echo $package
+    fi
+done
+

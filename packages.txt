@@ -29,6 +29,7 @@ network-manager-applet
 networkmanager
 noto-fonts-emoji
 nwg-look
+pacman-contrib
 pamixer
 pasystray
 pavucontrol
