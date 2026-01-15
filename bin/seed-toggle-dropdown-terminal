@@ -4,15 +4,15 @@ WINDOW_CLASS="terminal-dropdown11"
 TERMINAL="kitty --class $WINDOW_CLASS"
 
 function unpin_window() {
-    is_pinned=$(hyprctl clients | grep -A 6 "class: $WINDOW_CLASS" | grep "pinned: 1")
-    if [[ $is_pinned ]]; then
+    is_pinned=$(hyprctl clients -j | jq -r ".[] | select(.class == \"$WINDOW_CLASS\") | .pinned")
+    if [[ "$is_pinned" == "true" ]]; then
         hyprctl dispatch pin class:$WINDOW_CLASS
     fi
 }
 
 function pin_window() {
-    is_not_pinned=$(hyprctl clients | grep -A 6 "class: $WINDOW_CLASS" | grep "pinned: 0")
-    if [[ $is_not_pinned ]]; then
+    is_pinned=$(hyprctl clients -j | jq -r ".[] | select(.class == \"$WINDOW_CLASS\") | .pinned")
+    if [[ "$is_pinned" == "false" ]]; then
         hyprctl dispatch pin class:$WINDOW_CLASS
     fi
 }
@@ -47,7 +47,7 @@ function change_focus() {
         fi
     done
 
-    active_window_address=$(hyprctl activewindow | grep "Window " | sed -nr 's/^Window ([a-z0-9]*) ->.*/\1/p')
+    active_window_address=$(hyprctl activewindow -j | jq -r ".address")
     active_window_workspace_id=${workspaces[$active_window_address]}
 
     for window_address in "${!workspaces[@]}"; do
@@ -78,10 +78,11 @@ function change_focus() {
     fi
 }
 
-clients=$(hyprctl clients | grep "class: $WINDOW_CLASS")
-if [[ $clients ]]; then
-    activewindow=$(hyprctl activewindow | grep "class: $WINDOW_CLASS")
-    if [[ $activewindow ]]; then
+dropdown_terminal_clients=$(hyprctl clients -j | jq -r ".[] | select(.class == \"$WINDOW_CLASS\")")
+if [[ $dropdown_terminal_clients ]]; then
+    active_workspace_id=$(hyprctl activeworkspace -j | jq -r ".id")
+    dropdown_terminal_workspace_id=$(hyprctl clients -j | jq -r ".[] | select(.class == \"$WINDOW_CLASS\") | .workspace.id")
+    if [[ "$active_workspace_id" == "$dropdown_terminal_workspace_id" ]]; then
         is_fullscreen=$(hyprctl activewindow -j | jq -r '.fullscreen')
         if [[ $is_fullscreen -ne 0 ]]; then
             hyprctl dispatch fullscreen
