@@ -65,7 +65,7 @@
     "cpu": {
         "format": " {usage}%",
         "tooltip": false,
-        "on-click": "kitty htop"
+        "on-click": "~/.local/bin/seed-exec-floating-window kitty htop"
     },
     "temperature": {
         // "thermal-zone": 2,
