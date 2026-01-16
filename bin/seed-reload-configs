@@ -6,3 +6,7 @@ dunstctl reload
 
 killall waybar
 hyprctl dispatch exec waybar
+
+kill $(pidof hypridle)
+nohup hypridle >/dev/null 2>&1 &
+
