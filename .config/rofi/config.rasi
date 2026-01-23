@@ -1,10 +1,10 @@
 configuration {
-	modes: "window,drun,run,ssh,calc";
-    display-run: "";
+	modes:          "window,drun,run,ssh,calc";
+    display-run:    "";
     display-window: "";
-    display-ssh: "📡";
-    display-calc: "🧮";
-    display-drun: "";
+    display-ssh:    "📡";
+    display-calc:   "🧮";
+    display-drun:   "";
     timeout {
         action: "kb-cancel";
         delay:  0;
@@ -15,61 +15,21 @@ configuration {
     }
 }
 
+@import "~/.config/rofi/theme/colors.rasi"
+@import "~/.config/rofi/theme/general.rasi"
+@import "~/.config/rofi/theme/mainbox.rasi"
+@import "~/.config/rofi/theme/window.rasi"
+
 * {
-    box-spacing:                    30px;
-    box-margin:                     30px 30px;
-    inputbar-spacing:               30px;
-    list-spacing:                   30px;
-    general-padding:                20px;
-    element-padding:                30px 40px;
-    element-radius:                 4px;
-    element-size:                   125px;
-    general-radius:                 4px;
-    element-font:                   "feather 32";
-
-    background:                     #161616FF;
-    background-alt:                 #282B31FF;
-    foreground:                     #FFFFFFFF;
-    selected:                       #61AFEFFF;
-    active:                         #98C379FF;
-    urgent:                         #E06C75FF;
-    alternate-normal-background:    #161616FF;
-
-    border-image-color:          linear-gradient(90deg, #DE9C1CEE, #EB4E3CEE);
+    element-padding:    30px 40px;
+    element-size:       125px;
 }
 
 window {
-    /* properties for window widget */
-    transparency:                "real";
-    location:                    center;
-    anchor:                      center;
-    fullscreen:                  false;
-    width:                       810px;
-    height:                      270px;
-    x-offset:                    0px;
-    y-offset:                    0px;
-
-    /* properties for all widgets */
-    enabled:                     true;
-    margin:                      0px;
-    padding:                     0px;
-    border:                      0px;
-    border-radius:               var(general-radius);
-    border-color:                @selected;
-    cursor:                      "default";
-    background-color:            @background;
-    background-image:            @border-image-color;
-    padding:                     2px;
+    width:              810px;
+    height:             270px;
 }
 
 mainbox {
-    enabled:                     true;
-    spacing:                     var(box-spacing);
-    margin:                      0px;
-    padding:                     var(box-margin);
-    border:                      0px solid;
-    border-radius:               4px;
-    border-color:                @selected;
-    background-color:            @background;
-    children:                    [ "inputbar", "listview" ];
+    children:           [ "inputbar", "listview" ];
 }

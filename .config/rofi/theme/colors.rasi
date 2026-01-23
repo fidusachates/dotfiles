@@ -1,9 +1,10 @@
 * {
-    background:         #161616FF;
-    background-alt:     #282B31FF;
-    foreground:         #FFFFFFFF;
-    selected:           #61AFEFFF;
-    active:             #98C379FF;
-    urgent:             #E06C75FF;
-    border-image-color: linear-gradient(90deg, #DE9C1CEE, #EB4E3CEE);
+    background:                     #161616FF;
+    background-alt:                 #282B31FF;
+    alternate-normal-background:    #161616FF;
+    foreground:                     #FFFFFFFF;
+    selected:                       #61AFEFFF;
+    active:                         #98C379FF;
+    urgent:                         #E06C75FF;
+    border-image-color:             linear-gradient(90deg, #DE9C1CEE, #EB4E3CEE);
 }
