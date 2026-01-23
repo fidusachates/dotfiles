@@ -20,7 +20,7 @@ configuration {
 }
 
 window {
-    width:                       810px;
+    width:                       835px;
     height:                      270px;
 }
 

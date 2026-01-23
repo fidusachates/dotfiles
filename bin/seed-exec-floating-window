@@ -1,4 +1,7 @@
 #!/bin/bash
 
-hyprctl dispatch -- exec "[float; move (monitor_w*0.5-monitor_w*0.4) (monitor_h*0.5-monitor_h*0.35); size monitor_w*0.8 monitor_h*0.7]" $@
+window_rule="[float; move (monitor_w*0.5-monitor_w*0.4) (monitor_h*0.5-monitor_h*0.35); size monitor_w*0.8 monitor_h*0.7]"
 
+cmd=$(printf '%q ' "$@")
+
+hyprctl dispatch exec "$window_rule $cmd"

@@ -7,6 +7,7 @@ opt_bluetooth="";
 opt_wifi="";
 opt_displays="";
 opt_sound="";
+opt_about_system="";
 
 rofi_cmd() {
 	rofi -dmenu \
@@ -16,7 +17,7 @@ rofi_cmd() {
 }
 
 echo_options() {
-    echo -e "$opt_bluetooth\n$opt_wifi\n$opt_displays\n$opt_sound"
+    echo -e "$opt_bluetooth\n$opt_wifi\n$opt_displays\n$opt_sound\n$opt_about_system"
 }
 
 run_rofi() {
@@ -36,6 +37,9 @@ case ${choice} in
         ;;
     $opt_sound)
         $bin_dir/seed-exec-floating-window pavucontrol
+        ;;
+    $opt_about_system)
+        $bin_dir/seed-exec-floating-window kitty bash -c "fastfetch; read -n 1"
         ;;
 esac
 
