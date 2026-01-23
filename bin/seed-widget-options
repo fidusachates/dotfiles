@@ -1,0 +1,35 @@
+#!/bin/bash
+
+rofi_dir="$HOME/.config/rofi"
+bin_dir="$HOME/.local/bin"
+uptime="`uptime -p | sed -e 's/up //g'`"
+
+opt_bluetooth="";
+opt_wifi="";
+
+rofi_cmd() {
+	rofi -dmenu \
+		-p "Options" \
+		-mesg "Options" \
+        -theme ${dir}/widgets/options.rasi
+}
+
+echo_options() {
+    echo -e "$opt_bluetooth\n$opt_wifi"
+}
+
+run_rofi() {
+    echo_options | rofi_cmd
+}
+
+choice=$(run_rofi)
+case ${choice} in
+    $opt_bluetooth)
+        $HOME/.local/bin/seed-exec-floating-window kitty -o confirm_os_window_close=0 bluetui
+        ;;
+    $opt_wifi)
+        $HOME/.local/bin/seed-exec-floating-window nm-connection-editor
+        ;;
+esac
+
+
