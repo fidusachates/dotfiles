@@ -23,6 +23,7 @@ configuration {
 * {
     element-padding:    30px 40px;
     element-size:       125px;
+    box-spacing:        10px;
 }
 
 window {
@@ -31,5 +32,27 @@ window {
 }
 
 mainbox {
-    children:           [ "inputbar", "listview" ];
+    children:           [ "inputbar", "message", "listview" ];
+}
+
+inputbar {
+    enabled:            true;
+}
+
+listview {
+    enabled:            true;
+    cycle:              true;
+    border:             2px 0 0 0 solid;
+    border-radius:      2px;
+    border-color:       #D47C24FF;
+}
+
+// Calculator result message
+message {
+    enabled:            true;
+    cycle:              true;
+    padding:            10px 0 0 0;
+    border:             2px 0 0 0 solid;
+    border-radius:      2px;
+    border-color:       #D47C24FF;
 }
