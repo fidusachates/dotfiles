@@ -2,11 +2,11 @@
 
 rofi_dir="$HOME/.config/rofi"
 bin_dir="$HOME/.local/bin"
-uptime="`uptime -p | sed -e 's/up //g'`"
 
 opt_bluetooth="";
 opt_wifi="";
 opt_displays="";
+opt_sound="";
 
 rofi_cmd() {
 	rofi -dmenu \
@@ -16,7 +16,7 @@ rofi_cmd() {
 }
 
 echo_options() {
-    echo -e "$opt_bluetooth\n$opt_wifi\n$opt_displays"
+    echo -e "$opt_bluetooth\n$opt_wifi\n$opt_displays\n$opt_sound"
 }
 
 run_rofi() {
@@ -26,13 +26,16 @@ run_rofi() {
 choice=$(run_rofi)
 case ${choice} in
     $opt_bluetooth)
-        $HOME/.local/bin/seed-exec-floating-window kitty -o confirm_os_window_close=0 bluetui
+        $bin_dir/seed-exec-floating-window kitty -o confirm_os_window_close=0 bluetui
         ;;
     $opt_wifi)
-        $HOME/.local/bin/seed-exec-floating-window nm-connection-editor
+        $bin_dir/seed-exec-floating-window nm-connection-editor
         ;;
     $opt_displays)
-        $HOME/.local/bin/seed-exec-floating-window nwg-displays
+        $bin_dir/seed-exec-floating-window nwg-displays
+        ;;
+    $opt_sound)
+        $bin_dir/seed-exec-floating-window pavucontrol
         ;;
 esac
 
