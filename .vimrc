@@ -23,6 +23,8 @@
 
     Plug 'MagicDuck/grug-far.nvim'
 
+    Plug 'lewis6991/gitsigns.nvim'
+
     " Call :PlugInstall in vim to install plugins
     " :PlugUpdate :PlugDiff
     " :PlugClean after deleting plugin
