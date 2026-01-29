@@ -21,6 +21,8 @@
 
     Plug 'ryanoasis/vim-devicons'
 
+    Plug 'MagicDuck/grug-far.nvim'
+
     " Call :PlugInstall in vim to install plugins
     " :PlugUpdate :PlugDiff
     " :PlugClean after deleting plugin
