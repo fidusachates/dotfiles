@@ -33,7 +33,7 @@ pacman-contrib
 pamixer
 pasystray
 pavucontrol
-pcmanfm
+pcmanfm-qt
 pipewire
 pulseaudio
 pulseaudio-alsa

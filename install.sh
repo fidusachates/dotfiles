@@ -169,4 +169,7 @@ else
     echo "Firewall (ufw) is configured and enabled"
 fi
 
+# Set pcmanfm-qt as default file manager
+xdg-mime default pcmanfm-qt.desktop inode/directory
+
 hyprctl reload
